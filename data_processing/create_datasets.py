@@ -345,6 +345,7 @@ df_overlap = get_seq_len_less_than(df_overlap, 50)
 valid_df_satpdb = get_seq_len_less_than(valid_df_satpdb, 50)
 
 print('7. Selecting negative and positive sequences for AMP activity')
+df_overlap = df_dbaasp.copy(deep=True)
 overlap_neg = all_activity_more_than(df_overlap, 100)
 print ("--> Number of negative seq in satpdb", len(overlap_neg))
 print ("--> Number of unique seq in satpdb", len(valid_df_satpdb["seq"].drop_duplicates()))
@@ -472,7 +473,7 @@ combine_neg1 = combined_neg1[~combined_neg1.seq.str.contains('[a-z]')]
 combined_neg1 = combined_neg1[~combined_neg1.seq.str.contains(r'[0-9]')]
 print('--> Writing combined negative sequences collected from DBAASP and AMPEP to amp_neg.csv')
 combined_neg1.to_csv("amp_neg.csv", index=False, header=False)    # not multiplied the samples.
-
+"""
 # Toxicity data
 print('**** Creating Toxicity datasets ****')
 
@@ -615,3 +616,4 @@ allseq = allseq.sample(frac=1)
 allseq = allseq[['text', 'source', 'source2']]
 allseq.columns = ['text', 'lab_dummy', 'source']
 allseq.to_csv("unlab_.csv", index=False, header=True)
+"""

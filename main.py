@@ -36,7 +36,8 @@ cfg._print(cfg)
 cfg._save_config(parser.parse_args(), cfg, cfg.savepath)
 
 # torch-related setup from cfg.
-device = torch.device("cuda:0" if torch.cuda.is_available() and not cfg.ignore_gpu else "cpu")
+#device = torch.device("cuda:0" if torch.cuda.is_available() and not cfg.ignore_gpu else "cpu")
+device = torch.device("cpu")
 log.info(f'Using device: {device}')
 
 cfg.seed = cfg.seed if cfg.seed else random.randint(1, 10000)
